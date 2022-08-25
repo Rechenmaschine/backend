@@ -17,7 +17,7 @@ import java.util.List;
  * <p>
  * Ausserdem werden zum Spielverlauf Konsolenausgaben gemacht.
  */
-public class Logic implements IGameHandler {
+public class Logic implements IPersistentGameHandler {
   private static final Logger log = LoggerFactory.getLogger(Logic.class);
 
   /** Aktueller Spielstatus. */
@@ -48,5 +48,11 @@ public class Logic implements IGameHandler {
   @Override
   public void onError(String error) {
     log.warn("Fehler: {}", error);
+  }
+
+  @Override
+  public void reset() {
+    this.gameState = null;
+    // TODO: reset other objects that should not persist over different games
   }
 }
